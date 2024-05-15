@@ -46,8 +46,15 @@ class MyClient(discord.Client):
         print(f'Iterating through messages')
         if messages:
             print(f'Total messages found: {len(messages)}')
-            for message in messages[:-1]:
-                await message.delete()
+            
+            #print(f'Message id: {messages[0].id}')
+
+            i = len(messages) - 1
+            while (i > 0):
+                await messages[i].delete()
+                i -= 1
+
+            print(f'Keeping message: {messages[0]}')
             print(f'Deleted {len(messages) - 1} messages, keeping the latest one.')
         else:
             print('No messages found in the channel.')
